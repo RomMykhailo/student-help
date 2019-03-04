@@ -5,6 +5,9 @@
     <title>Document</title>
     <link rel="stylesheet" href="">
     <style>
+        body{
+            background-color: darkseagreen;
+        }
         container{
             align-content: center;
         }
@@ -25,19 +28,24 @@
        <br>
        <label for="workerConfirmId">Confirm password:</label>
        <input type="password" id="workerConfirmId">
-<!--
        <br>
-       <label for="workerGenderId">Gender:</label>
-       <select name="" id="workerGenderId">
-           <option value="male">Male</option>
-            <option value="female">Female</option>
-       </select>
--->
-       <textarea name="Description" id="workerDescriptionId" cols="40" rows="10"></textarea>
+       <textarea name="Description" id="workerDescriptionId" placeholder="Description" cols="40" rows="7"></textarea>
        <br>
           <button type="button" id="workerRegisterId">Register</button>
      
    </form>
+   </div>
+   <br>
+   <button type="button" id="showWorkerId"> Show worker </button> 
+   <input type="number" id="inputWorkerId">  
+   <div id="workerId">
+   </div>
+   
+   <br>
+   <button type="button" id="showAllWorkersId"> Show all workers </button>   
+   <div id="workers">
+      <table id="tableWorkersId"></table>
+       
    </div>
    
    <script src="js/jquery.min.js"></script>

@@ -2,6 +2,7 @@ package com.helpstudents.service;
 
 import com.helpstudents.domain.WorkerDTO;
 import com.helpstudents.entity.WorkerEntity;
+import com.helpstudents.exeptions.ExistsExceptions;
 import com.helpstudents.repository.WorkerRepository;
 import com.helpstudents.utils.ObjectMapperUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,10 @@ public class WorkerServiceImpl implements WorkerService {
 
     @Override
     public WorkerDTO getWorkerById(Long id) {
+        boolean exists = workerRepository.existsById(id);
+        if(!exists){
+            throw new ExistsExceptions("Worker with id " + id + " not exists");
+        }
        WorkerEntity workerEntity = workerRepository.findById(id).get();
        WorkerDTO workerDTO = objectMapperUtils.map(workerEntity, WorkerDTO.class);
         return workerDTO;

@@ -23,7 +23,8 @@ public class WorkerController {
 
     @GetMapping("id/{id}")
     public ResponseEntity<?> getWorkerById (@PathVariable Long id){
-        return new ResponseEntity<>(workerService.getWorkerById(id),HttpStatus.OK);
+        WorkerDTO workerDTO = workerService.getWorkerById(id);
+        return new ResponseEntity(workerDTO,HttpStatus.OK);
     }
 
     @GetMapping
