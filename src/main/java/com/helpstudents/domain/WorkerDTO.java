@@ -10,12 +10,7 @@ import javax.validation.constraints.Size;
 @Getter
 @Setter
 @NoArgsConstructor
-public class WorkerDTO {
-    private Long id;
-
-    @NotNull(message = "Field 'Name' can not be null")
-    @Size(min=2, max=20, message = "Not valid length 'Name'")
-    private String name;
+public class WorkerDTO extends WorkerDTOForAll {
     @NotNull(message = "Field 'Email' can not be null")
     @Size(min=5, max=100, message = "Not valid length 'email'")
     private String email;
@@ -23,6 +18,6 @@ public class WorkerDTO {
     @Size
     private String password;
     private String passwordConfirm;
-    private String description;
+    private String phoneNumber;
 
 }

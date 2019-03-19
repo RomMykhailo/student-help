@@ -1,5 +1,6 @@
 package com.helpstudents.domain;
 
+import com.helpstudents.entity.CustomerEntity;
 import com.helpstudents.entity.WorkerEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,20 +17,12 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class OrderDTO {
     private Long id;
-
-    @NotNull(message = "Field 'Email' can not be null")
-    @Size(min=5, max=100, message = "Not valid length 'email'")
-    private String email;
-
     private String description;
-
     private LocalDateTime dateCreate;
-
     private Date dateMade;
-
     private String status;
-
     private BigDecimal price;
-
+    private CustomerEntity customerEntity;
     private WorkerEntity workerEntity;
+    private String file;
 }
