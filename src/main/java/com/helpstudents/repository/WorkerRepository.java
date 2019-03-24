@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface WorkerRepository extends JpaRepository<WorkerEntity, Long> {
 
+    WorkerEntity findByNickName(String nickName);
 }

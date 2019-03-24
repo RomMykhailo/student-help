@@ -12,4 +12,5 @@ public interface WorkerService {
     WorkerDTO getWorkerById (Long id);
 
     List<WorkerDTO> getAllWorker();
+    WorkerDTO findByNickName (String nickName);
 }

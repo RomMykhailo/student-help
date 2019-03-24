@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -28,5 +29,12 @@ public class OrderServiceImpl implements OrderService {
         OrderEntity orderEntity = orderRepository.findById(id).get();
         OrderDTO orderDTO = objectMapperUtils.map(orderEntity,OrderDTO.class);
         return orderDTO;
+    }
+
+    @Override
+    public List<OrderDTO> getAllOrdersForCustomerId(Long customerId) {
+        List<OrderEntity> orderEntities = orderRepository.findAllByCustomerEntityId(customerId);
+        List<OrderDTO> orderDTOS = objectMapperUtils.mapAll(orderEntities,OrderDTO.class);
+        return orderDTOS;
     }
 }

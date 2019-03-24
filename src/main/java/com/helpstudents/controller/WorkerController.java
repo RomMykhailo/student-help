@@ -5,8 +5,10 @@ import com.helpstudents.service.WorkerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
+import javax.management.relation.Role;
 import javax.validation.Valid;
 
 @RestController
@@ -15,12 +17,14 @@ public class WorkerController {
     @Autowired
     private WorkerService workerService;
 
+
     @PostMapping("/add")
     public ResponseEntity<?> createWorker(@Valid @RequestBody WorkerDTO workerDTO){
         workerService.createWorker(workerDTO);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
+    @Secured("ROLE_WORKER")
     @GetMapping("id/{id}")
     public ResponseEntity<?> getWorkerById (@PathVariable Long id){
         WorkerDTO workerDTO = workerService.getWorkerById(id);

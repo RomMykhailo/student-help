@@ -10,7 +10,7 @@ public class PricePropositionDTO {
     private Long id;
     private BigDecimal price;
 
-    private WorkerEntity workerEntity;
+    private WorkerDTOForAll workerDTOForAll;
 
-    private OrderEntity orderEntity;
+    private OrderDTO orderDTO;
 }

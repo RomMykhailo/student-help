@@ -9,7 +9,6 @@ import java.time.LocalDateTime;
 public class CustomerDTOForAll {
     private Long id;
     private String nickName;
-    @Column(name = "description")
     private String description;
     private LocalDateTime dateCreate;
 }

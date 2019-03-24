@@ -10,5 +10,5 @@ public class StatusWorkerDTO {
     private String status;
     private String description;
     private LocalDateTime dateTime;
-    private AdminEntity adminEntity;
+    private AdminDTO adminDTO;
 }

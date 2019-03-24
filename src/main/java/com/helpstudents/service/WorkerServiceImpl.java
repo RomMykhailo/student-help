@@ -6,6 +6,7 @@ import com.helpstudents.exeptions.ExistsExceptions;
 import com.helpstudents.repository.WorkerRepository;
 import com.helpstudents.utils.ObjectMapperUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -16,9 +17,10 @@ public class WorkerServiceImpl implements WorkerService {
 
     @Autowired
     private WorkerRepository workerRepository;
-
     @Autowired
     private ObjectMapperUtils objectMapperUtils;
+    @Autowired
+    private PasswordEncoder encoder;
 
     @Override
     public void createWorker(WorkerDTO workerDTO) {
@@ -28,7 +30,9 @@ public class WorkerServiceImpl implements WorkerService {
 //            workerEntity.setEmail(workerDTO.getEmail());
 //            workerEntity.setPassword(workerDTO.getPassword());
 //            workerEntity.setDescription(workerDTO.getDescription());
-            workerRepository.save(workerEntity);
+            String password =workerEntity.getPassword();
+//            workerEntity.setPassword(encoder.encode(password));
+//            workerRepository.save(workerEntity);
         }else {
             System.out.println("Password not match");
         }
@@ -58,5 +62,11 @@ public class WorkerServiceImpl implements WorkerService {
 //            workerDTOS.add(workerDTO);
 //        });
         return workerDTOS;
+    }
+
+    @Override
+    public WorkerDTO findByNickName(String nickName) {
+        WorkerDTO workerDTO = objectMapperUtils.map(workerRepository.findByNickName(nickName),WorkerDTO.class);
+        return workerDTO;
     }
 }

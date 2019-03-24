@@ -8,6 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Max;
+import java.util.List;
 
 @RestController
 @RequestMapping("order")
@@ -25,6 +27,12 @@ public class OrderController {
     public ResponseEntity<?> getOrderById(@PathVariable Long id){
         OrderDTO orderDTO = orderService.getOrderById(id);
         return new ResponseEntity<>(orderDTO,HttpStatus.OK);
+    }
+
+    @GetMapping("/getAllforcustomer/{id}")
+    public ResponseEntity<?> getAllOrdersForCustomerId(@PathVariable Long customerId){
+        List<OrderDTO> orderDTOS = orderService.getAllOrdersForCustomerId(customerId);
+        return new ResponseEntity<>(orderDTOS,HttpStatus.OK);
     }
 
 
