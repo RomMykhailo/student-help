@@ -10,29 +10,28 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.management.relation.Role;
 import javax.validation.Valid;
-
-@RestController
-@RequestMapping("workers")
+//
+//@RestController
+//@RequestMapping("workers")
 public class WorkerController {
     @Autowired
     private WorkerService workerService;
-
-
-    @PostMapping("/add")
-    public ResponseEntity<?> createWorker(@Valid @RequestBody WorkerDTO workerDTO){
-        workerService.createWorker(workerDTO);
-        return new ResponseEntity<>(HttpStatus.CREATED);
-    }
-
-    @Secured("ROLE_WORKER")
-    @GetMapping("id/{id}")
-    public ResponseEntity<?> getWorkerById (@PathVariable Long id){
-        WorkerDTO workerDTO = workerService.getWorkerById(id);
-        return new ResponseEntity(workerDTO,HttpStatus.OK);
-    }
-
-    @GetMapping
-    public ResponseEntity<?> getAllWorkers (){
-        return  new ResponseEntity<>(workerService.getAllWorker(),HttpStatus.OK);
-    }
+//
+//
+//    @PostMapping("/add")
+//    public ResponseEntity<?> createWorker(@Valid @RequestBody WorkerDTO workerDTO){
+//        workerService.createWorker(workerDTO);
+//        return new ResponseEntity<>(HttpStatus.CREATED);
+//    }
+//
+//    @GetMapping("id/{id}")
+//    public ResponseEntity<?> getWorkerById (@PathVariable Long id){
+//        WorkerDTO workerDTO = workerService.getWorkerById(id);
+//        return new ResponseEntity(workerDTO,HttpStatus.OK);
+//    }
+//
+//    @GetMapping
+//    public ResponseEntity<?> getAllWorkers (){
+//        return  new ResponseEntity<>(workerService.getAllWorker(),HttpStatus.OK);
+//    }
 }

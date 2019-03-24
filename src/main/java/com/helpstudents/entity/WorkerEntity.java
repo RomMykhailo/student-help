@@ -7,6 +7,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -31,9 +32,10 @@ public class WorkerEntity extends PeopleBaseEntity {
     @JoinColumn(name = "status_id")
     private StatusWorkerEntity status;
 
-//    @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
-//    @CollectionTable(name = "worker_role", joinColumns = @JoinColumn(name="worker_id"))
-//    @Enumerated(EnumType.STRING)
-//    private Set<Role> roles;
-
+    @ManyToMany
+    @JoinTable(name = "role_worker",
+           joinColumns = @JoinColumn(name = "worker_id"),
+           inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private List<RoleEntity> roles;
 }

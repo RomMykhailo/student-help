@@ -17,6 +17,7 @@ public class WorkerDTO extends WorkerDTOForAll {
     @NotNull
     @Size
     private String password;
+    @NotNull
     private String passwordConfirm;
     private String phoneNumber;
 
