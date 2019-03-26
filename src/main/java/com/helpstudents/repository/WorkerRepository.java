@@ -8,10 +8,9 @@ import java.util.Optional;
 
 @Repository
 public interface WorkerRepository extends JpaRepository<WorkerEntity, Long> {
-
-    WorkerEntity findByNickName(String nickName);
-
-    WorkerEntity findByEmail(String email);
-
     boolean existsByEmail(String email);
+
+    Optional<WorkerEntity> findByEmail(String Email);
+
+    Optional<WorkerEntity> findByNickName (String nickName);
 }

@@ -7,10 +7,10 @@ import java.util.List;
 
 public interface WorkerService {
 
-//    void createWorker (WorkerDTO workerDTO);
-//
-//    WorkerDTO getWorkerById (Long id);
-//
-//    List<WorkerDTO> getAllWorker();
-//    WorkerDTO findByNickName (String nickName);
+    void createWorker (WorkerDTO workerDTO);
+
+    WorkerDTO getWorkerById (Long id);
+
+    List<WorkerDTO> getAllWorker();
+    WorkerDTO findByNickName (String nickName);
 }

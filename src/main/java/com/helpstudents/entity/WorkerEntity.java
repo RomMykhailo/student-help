@@ -1,8 +1,6 @@
 package com.helpstudents.entity;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -10,13 +8,20 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table (name = "workers")
-public class WorkerEntity extends PeopleBaseEntity {
+public class WorkerEntity extends BaseEntity {
 
+    @Column(name = "email", nullable = false, unique = true, length = 45)
+    private String email;
+
+    @Column(name = "password", nullable = false)
+    private String password;
+
+    private String phoneNumber;
     @Column (name = "nick", nullable = false)
     private String nickName;
 
@@ -32,7 +37,7 @@ public class WorkerEntity extends PeopleBaseEntity {
     @JoinColumn(name = "status_id")
     private StatusWorkerEntity status;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "role_worker",
            joinColumns = @JoinColumn(name = "worker_id"),
            inverseJoinColumns = @JoinColumn(name = "role_id")

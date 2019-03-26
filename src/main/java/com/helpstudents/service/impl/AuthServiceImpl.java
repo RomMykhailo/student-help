@@ -1,5 +1,7 @@
 package com.helpstudents.service.impl;
 
+import com.helpstudents.config.jwt.JvtTokenProvider;
+import com.helpstudents.domain.SigninWorkerDTO;
 import com.helpstudents.domain.WorkerDTO;
 import com.helpstudents.entity.RoleEntity;
 import com.helpstudents.entity.WorkerEntity;
@@ -10,10 +12,15 @@ import com.helpstudents.service.AuthService;
 import com.helpstudents.utils.ObjectMapperUtils;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
+
 @Service
 public class AuthServiceImpl implements AuthService {
     @Autowired
@@ -24,6 +31,10 @@ public class AuthServiceImpl implements AuthService {
     private ObjectMapperUtils objectMapperUtils;
     @Autowired
     private RoleRepository roleRepository;
+    @Autowired
+    private AuthenticationManager authenticationManager;
+    @Autowired
+    private JvtTokenProvider jvtTokenProvider;
 
     @Override
     public void registerWorker(WorkerDTO workerDTO) throws NotFoundException {
@@ -40,5 +51,14 @@ public class AuthServiceImpl implements AuthService {
                 );
         workerEntity.setRoles(Arrays.asList(roleEntity));
         workerRepository.save(workerEntity);
+    }
+
+    @Override
+    public String loginWorker(SigninWorkerDTO request){
+        Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        String token = jvtTokenProvider.generateToken(authentication);
+        return token;
     }
 }
